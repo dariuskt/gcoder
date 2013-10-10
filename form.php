@@ -26,6 +26,12 @@
 	<label for="cutterDiameter">cutterDiameter</label>
 	<input name="cutterDiameter" id="cutterDiameter" type="text" value="<?=@$_GET['cutterDiameter']?>">
 <br/>
+	<label for="gearType">gearType</label>
+	<select name="gearType" id="gearType">
+		<option value="rh" <?=('rh'==@$_GET['gearType'])?'selected="selected"':'';?>>Right Hand</option>
+		<option value="lh" <?=('lh'==@$_GET['gearType'])?'selected="selected"':'';?>>Left Hand</option>
+	</select>
+<br/>
 	<label for="angle">angle</label>
 	<input name="angle" id="angle" type="text" value="<?=@$_GET['angle']?>">
 <br/>

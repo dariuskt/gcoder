@@ -9,6 +9,7 @@ $reqFields = array(
 	'toothDepth'      => 2.1,
 	'gearWidth'       => 10,
 	'cutterDiameter'  => 30,
+	'gearType'        => 'rh',
 	'angle'           => 45,
 	'safetyDistance'  => 3,
 	'feed'            => 50,
