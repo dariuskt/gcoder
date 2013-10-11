@@ -12,6 +12,7 @@ class Helical {
 	private $gearWidth = null;
 	private $cutterDiameter = null;
 	private $angle = null;
+	private $cutFrom = null;
 	private $safetyDistance = null;
 	private $feed = null;
 	private $seek = null;
@@ -49,25 +50,25 @@ class Helical {
 
 		// go to safety distance
 		$s.=Gcode::seek(array(
-			'y' => $y0 + $this->safetyDistance,
+			'y' => ($y0 + $this->safetyDistance) * $this->cutFrom,
 		));
 
 		$s.=Gcode::seek(array(
 			'x' => -$this->leadInOut,
-			'a' => $a0,
+			'a' => $a0 * $this->cutFrom,
 		));
 
 		$s.=Gcode::seek(array(
-			'y' => $y0 - $this->toothDepth,
+			'y' => ($y0 - $this->toothDepth) * $this->cutFrom,
 		));
 
 		$s.=Gcode::feed(array(
 			'x' => $this->gearWidth + $this->leadInOut,
-			'a' => $a0 + $this->toothAngle,
+			'a' => ($a0 + $this->toothAngle) * $this->cutFrom,
 		));
 
 		$s.=Gcode::seek(array(
-			'y' => $y0 + $this->safetyDistance,
+			'y' => ($y0 + $this->safetyDistance) * $this->cutFrom,
 		));
 
 		return $s;

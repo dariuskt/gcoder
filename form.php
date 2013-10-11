@@ -35,6 +35,12 @@
 	<label for="angle">angle</label>
 	<input name="angle" id="angle" type="text" value="<?=@$_GET['angle']?>">
 <br/>
+	<label for="cutFrom">cutFrom</label>
+	<select name="cutFrom" id="cutFrom">
+		<option value="-1" <?=(@$_GET['cutFrom']<0)?'selected="selected"':'';?>>Y negative (front)</option>
+		<option value="+1" <?=(@$_GET['cutFrom']>0)?'selected="selected"':'';?>>Y positive (rear)</option>
+	</select>
+<br/>
 	<label for="safetyDistance">safetyDistance</label>
 	<input name="safetyDistance" id="safetyDistance" type="text" value="<?=@$_GET['safetyDistance']?>">
 <br/>

@@ -11,6 +11,7 @@ $reqFields = array(
 	'cutterDiameter'  => 30,
 	'gearType'        => 'rh',
 	'angle'           => 45,
+	'cutFrom'         => -1,
 	'safetyDistance'  => 3,
 	'feed'            => 50,
 	'seek'            => 900,
