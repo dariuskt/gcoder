@@ -93,12 +93,21 @@ class Helical {
 		$gcode.="\n";
 
 
-		// setup coordinate system
-		$gcode.= sprintf("G21\n");
-		$gcode.= sprintf("G54\n");
-		$gcode.= sprintf("G90\n");
+		// setup everything
+		$gcode.= "G17 (XY plane)\n";
+		$gcode.= "G21 (Coordinates in millimeters)\n";
+		$gcode.= "G40 (Cancel cutter radius compensation)\n";
+		$gcode.= "G49 (Cancel cutter length offset)\n";
+		$gcode.= "G54 (Coordinate system?)\n";
+		$gcode.= "G80 (Cancel motion mode)\n";
+		$gcode.= "G90 (Absolute coordinates mode)\n";
+		$gcode.= "G98 (Retract to prior position)\n";
+		$gcode.= "\n";
+		$gcode.= "M3 (Spindle start)\n";
+		$gcode.= "\n";
 		$gcode.= sprintf("G0 F%d\n", $this->seek );
 		$gcode.= sprintf("G1 F%d\n", $this->feed );
+		$gcode.= "\n";
 
 		for ($tooth=0; $tooth<$this->toothCount; $tooth++) {
 			$gcode.="\n";
@@ -106,8 +115,9 @@ class Helical {
 		}
 
 		$gcode.="\n";
-		$gcode.="M2\n";
-	
+		$gcode.="M5 (Stop spindle)\n";
+		$gcode.="M2 (End program)\n";
+
 		return $gcode;
 	}
 
