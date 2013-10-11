@@ -25,6 +25,9 @@ foreach ($reqFields as $name=>$value) {
 
 if ( !empty($_GET['download']) ) {
 	header("Content-type: Text/Plain\n");
+
+	$_GET['angle'] *= ($_GET['gearType']=='lh')?-1:1;
+
 	$h = new Helical($_GET);
 	echo $h->gcode();
 } else {
