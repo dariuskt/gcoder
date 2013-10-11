@@ -26,6 +26,12 @@ foreach ($reqFields as $name=>$value) {
 
 if ( !empty($_GET['download']) ) {
 	header("Content-type: Text/Plain\n");
+	header(sprintf('Content-disposition: attachment; filename="%s"'
+		, $_GET['gearType'] . $_GET['angle'] . '_'
+		. $_GET['toothCount'] . 'tooth' . '_'
+		. $_GET['gearWidth'] . 'width' . '_'
+		. (($_GET['cutFrom']<0)?'frontCut':'backCut') 
+		. '.ngc')); 
 
 	$_GET['angle'] *= ($_GET['gearType']=='lh')?-1:1;
 
