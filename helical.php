@@ -42,7 +42,7 @@ class Helical {
 	}
 
 	private function tooth2g($toothNumber) {
-		$s=sprintf("(TOOTH %d)\n", $toothNumber);
+		$s=sprintf("(TOOTH %d/%d)\n", $toothNumber+1, $this->toothCount);
 
 		$y0 = (($this->outsideDiameter + $this->cutterDiameter) / 2);
 		$a0 = 360 / $this->toothCount * $toothNumber;
