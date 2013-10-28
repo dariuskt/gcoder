@@ -3,18 +3,20 @@
 require_once("helical.php");
 
 $reqFields = array(
-	'outsideDiameter' => 15,
-	'pitchDiameter'   => 12.7,
-	'toothCount'      => 12,
-	'toothDepth'      => 2.1,
-	'gearWidth'       => 10,
-	'cutterDiameter'  => 30,
-	'gearType'        => 'rh',
-	'angle'           => 45,
-	'cutFrom'         => -1,
-	'safetyDistance'  => 3,
-	'feed'            => 50,
-	'seek'            => 900,
+	'outsideDiameter'   => 15,
+	'pitchDiameter'     => 12.7,
+	'toothCount'        => 12,
+	'toothDepth'        => 2.1,
+	'gearWidth'         => 10,
+	'cutterDiameter'    => 30,
+	'gearType'          => 'rh',
+	'angle'             => 45,
+	'roughingStepDown'  => 10,
+	'finishingStepDown' => 0,
+	'cutFrom'           => -1,
+	'safetyDistance'    => 3,
+	'feed'              => 50,
+	'seek'              => 900,
 );
 foreach ($reqFields as $name=>$value) {
 	if (isset($_GET) && !isset($_GET[$name]) || strLen($_GET[$name]) == 0) {

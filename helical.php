@@ -12,6 +12,9 @@ class Helical {
 	private $gearWidth = null;
 	private $cutterDiameter = null;
 	private $angle = null;
+
+	private $roughingStepDown = null;
+	private $finishingStepDown = null;
 	private $cutFrom = null;
 	private $safetyDistance = null;
 	private $feed = null;
@@ -42,8 +45,9 @@ class Helical {
 		return $str;
 	}
 
-	private function tooth2g($toothNumber) {
-		$s=sprintf("(TOOTH %d/%d)\n", $toothNumber+1, $this->toothCount);
+	private function tooth2g($toothNumber, $depth=null) {
+		if ($depth === null) { $depth = $this->toothDepth; }
+		$s=sprintf("(TOOTH %d/%d, depth:%.2f)\n", $toothNumber+1, $this->toothCount, $depth);
 
 		$y0 = (($this->outsideDiameter + $this->cutterDiameter) / 2);
 		$a0 = 360 / $this->toothCount * $toothNumber;
@@ -59,7 +63,7 @@ class Helical {
 		));
 
 		$s.=Gcode::seek(array(
-			'y' => ($y0 - $this->toothDepth) * $this->cutFrom,
+			'y' => ($y0 - $depth) * $this->cutFrom,
 		));
 
 		$s.=Gcode::feed(array(
@@ -111,7 +115,25 @@ class Helical {
 
 		for ($tooth=0; $tooth<$this->toothCount; $tooth++) {
 			$gcode.="\n";
-			$gcode.= $this->tooth2g($tooth);
+
+			$depth = 0;
+			$total_roughing_depth = $this->toothDepth - $this->finishingStepDown;
+			while ($depth < $total_roughing_depth) {
+				if ( ($depth + $this->roughingStepDown) < $total_roughing_depth ) {
+					$depth += $this->roughingStepDown;
+					$gcode.= $this->tooth2g($tooth, $depth);
+				} else {
+					$depth = $total_roughing_depth;
+					$gcode.= $this->tooth2g($tooth, $total_roughing_depth);
+				}
+			}
+
+			$other_steps = $total_roughing_depth / $this->roughingStepDown;
+
+			// Do finishing cut only if it is significant.
+			if ( abs($this->finishingStepDown) > 0.001 ) {
+				$gcode.= $this->tooth2g($tooth);
+			}
 		}
 
 		$gcode.="\n";
