@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$version = 'v0.2.0';
+$version = 'v0.2.0+';
 ?>
 <html>
 	<head>
@@ -75,6 +75,25 @@ $version = 'v0.2.0';
 	<input name="download" id="download" type="submit" value="download">
 
 </form>
+
+<br>
+<hr>
+
+<aside>
+
+	Donations are accepted via PayPal: 
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display:inline;">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="hidden" name="hosted_button_id" value="DCPCKQYH9TRNL">
+	<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
+ 
+	and GitTip: <script data-gittip-username="dariuskt"
+        data-gittip-widget="button"
+        src="//gttp.co/v1.js"></script>
+
+</aside>
 
 
 </body>
