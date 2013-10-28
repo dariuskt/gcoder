@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+$version = 'v0.2.0';
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,6 +9,18 @@
 	</head>
 	<body>
 
+<aside>
+	Note: This software is distributed "AS IS" without any warranties. Use it AT YOUR OWN RISK.
+</aside>
+<aside>
+	Warning: This software is in early stage of development. Gcoder may be 
+	unstable and/or produce unpredictable results. Some features are not 
+	yet tested at all. 
+</aside>
+<aside>
+	Want to help? Contact me: 
+	<mark><script>document.write('gcoder+<?=$version?>ATatDOTlt'.replace('AT','@').replace('DOT','.'))</script></mark>
+</aside>
 <hr>
 <form action="?" method="GET">
 	<label for="outsideDiameter">outsideDiameter</label>
